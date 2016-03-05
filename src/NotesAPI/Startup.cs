@@ -3,6 +3,7 @@ using Microsoft.AspNet.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Newtonsoft.Json.Serialization;
 using NotesAPI.Repositories;
 
 namespace NotesAPI
@@ -25,6 +26,7 @@ namespace NotesAPI
         {
             // Add framework services.
             services.AddMvc()
+                .AddJsonOptions(x => x.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver())
                 .AddXmlDataContractSerializerFormatters()
                 .AddXmlSerializerFormatters();
 
